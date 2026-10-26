@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Command Center</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+  <nav class="rail">
+    <div class="brand">◈</div>
+    <button class="nav active" data-view="overview" title="Overview">▦<small>Overview</small></button>
+    <button class="nav" data-view="traffic" title="Traffic">▮<small>Traffic</small></button>
+    <button class="nav" data-view="devices" title="Devices">%<small>Devices</small></button>
+    <button class="nav" data-view="data" title="Data">☰<small>Data</small></button>
+    <button class="nav" data-view="settings" title="Settings">⚙<small>Settings</small></button>
+  </nav>
+
+  <div class="shell">
+    <div class="topbar">
+      <span class="live"><i></i> LIVE</span>
+      <span id="clock">--:--:--</span>
+      <span id="updated">Last updated: --</span>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="view active" id="overview">
+      <h1>Overview</h1>
+      <div class="rings">
+        <div class="ring" id="ringVisits"><div class="dial"><b id="totalVisits">0</b></div><span>Visits<br><small>target 1000</small></span></div>
+        <div class="ring" id="ringSignups"><div class="dial"><b id="totalSignups">0</b></div><span>Signups<br><small>target 250</small></span></div>
+        <div class="ring" id="ringConv"><div class="dial"><b id="conversion">0%</b></div><span>Conversion<br><small>target 30%</small></span></div>
+      </div>
+      <div class="panel hero"><canvas id="lineChart"></canvas></div>
+    </section>
+
+    <!-- TRAFFIC -->
+    <section class="view" id="traffic">
+      <h1>Traffic</h1>
+      <div class="panel hero"><canvas id="barChart"></canvas></div>
+    </section>
+
+    <!-- DEVICES -->
+    <section class="view" id="devices">
+      <h1>Devices</h1>
+      <div class="split">
+        <div class="panel"><canvas id="doughnutChart"></canvas></div>
+        <div class="panel bars" id="deviceBars"></div>
+      </div>
+    </section>
+
+    <!-- DATA -->
+    <section class="view" id="data">
+      <h1>Data Editor</h1>
+      <div class="panel">
+        <table>
+          <thead><tr><th>Day</th><th>Visits</th><th>Signups</th><th>Rate</th></tr></thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+        <p class="hint">Type in a cell and every chart updates instantly.</p>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="view" id="settings">
+      <h1>Settings</h1>
+      <div class="panel settings">
+        <label>Refresh interval
+          <select id="interval">
+            <option value="2000">2 seconds</option>
+            <option value="5000" selected>5 seconds</option>
+            <option value="10000">10 seconds</option>
+          </select>
+        </label>
+        <div class="row">
+          <button id="toggleBtn">Pause Auto-Refresh</button>
+          <button id="randomBtn" class="ghost">Randomize Now</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
